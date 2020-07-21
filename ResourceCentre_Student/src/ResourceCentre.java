@@ -181,16 +181,39 @@ public class ResourceCentre {
 		System.out.println("Camcorder added");
 	}
 	
+	@SuppressWarnings("null")
 	public static Chromebook inputChromebook() {	
 		Chromebook cb =null;
 		// write your code here
-		
+		  ArrayList<Camcorder> camcorderList = null;
+		for (int i = 0; i < camcorderList.size(); i++) {
+		      String tag = null;
+			if (tag.equalsIgnoreCase(camcorderList.get(i).getAssetTag()) && camcorderList.get(i).getIsAvailable() == true) {
+		        String due = Helper.readString("Enter due date > ");
+		        camcorderList.get(i).setIsAvailable(false);
+		        camcorderList.get(i).setDueDate(due);
+		        @SuppressWarnings("unused")
+				boolean isLoaned = true;
+		        System.out.println("Camcorder " + tag + " loaned out");
+			 }
+	    }
+	    boolean isLoaned = false;
+		if (isLoaned == false) {
+	      System.out.println("Invalid asset tag");
+	    }
 		return cb;
+	  }
 		
-	}	
 	public static void addChromebook(ArrayList<Chromebook> chromebookList, Chromebook cb) {
 		// write your code here
-	}
+		String tag = Helper.readString("Enter asset tag > ");
+	    String description = Helper.readString("Enter description > ");
+	    String Os = Helper.readString("Enter operating system > ");
+	    
+	    chromebookList.add(new Chromebook(tag, description, Os));
+	    System.out.println("Chromebook added!");
+	  }
+
 	
 	//================================= Option 3 Loan =================================
 	public static boolean doLoanCamcorder(ArrayList<Camcorder> camcorderList, String tag, String dueDate) {
